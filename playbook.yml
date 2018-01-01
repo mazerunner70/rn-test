@@ -1,0 +1,28 @@
+---
+- hosts: all
+  become: true
+  tasks:
+     - name: Update apt-cache 
+       apt: update_cache=yes
+
+     - name: Install Gui
+       apt: name={{item}} state=latest install_recommends=no # THis style described in http://docs.ansible.com/ansible/latest/playbooks_loops.html#standard-loops
+       with_items:
+         - ubuntu-desktop
+         - indicator-session # https://askubuntu.com/questions/362556/why-cant-i-shut-down-after-installing-ubuntu-desktop-from-minimal-cd
+         - gnome-terminal # after seeing it was not installed
+
+     # Only needed until we change the vagrant box we are using
+     - name: add vagrant user
+       user: 
+         name: vagrant
+         password: "{{ 'test1'|password_hash('sha256') }}"
+
+     - name: Install apache server
+       apt: name=apache2
+
+     - name: Add gnome-terminal to unity Launcher # This idea from https://askubuntu.com/questions/846704/changing-gsettings-for-another-user-from-an-ansible-script-started-by-vagrant
+       copy: 
+         src: /usr/share/applications/gnome-terminal.desktop
+         dest: /etc/xdg/autostart/gnome-terminal.desktop
+         remote_src: yes

@@ -1,0 +1,7 @@
+# Logs and databases #
+######################
+*.log
+
+# Ansible retry files #
+#######################
+*.retry

@@ -5,3 +5,8 @@
 # Ansible retry files #
 #######################
 *.retry
+
+
+#  Vagrant files #
+##################
+.vagrant

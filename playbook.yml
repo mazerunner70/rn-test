@@ -21,8 +21,38 @@
      - name: Install apache server
        apt: name=apache2
 
-     - name: Add gnome-terminal to unity Launcher # This idea from https://askubuntu.com/questions/846704/changing-gsettings-for-another-user-from-an-ansible-script-started-by-vagrant
-       copy: 
-         src: /usr/share/applications/gnome-terminal.desktop
-         dest: /etc/xdg/autostart/gnome-terminal.desktop
-         remote_src: yes
+     - name: Set startup script
+       copy:
+         src: files/startup_config.sh
+         dest: /home/vagrant/bin/
+         owner: vagrant
+         group: vagrant
+         mode: 0744 
+
+     - name: initiate script for startup
+       copy:
+         src: files/.gnomerc
+         dest: /home/vagrant/.gnomerc
+         owner: vagrant
+         group: vagrant
+         mode: 0744
+
+     - name: Create missing locales # https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue
+       command: sudo locale-gen "en_GB.UTF-8"
+
+#     - name: pt2
+#       command: sudo dpkg-reconfigure locales
+
+     - name: dev locale
+       action: command sudo update-locale LC_ALL=en_GB.utf8
+
+     - name: set default locale
+       sudo: yes
+       lineinfile: dest=/etc/default/locale
+         regexp="LC_ALL"
+         line="LC_ALL=\"en_GB.utf8\""
+
+
+#     - name: Change text entry to GB #https://askubuntu.com/questions/861662/setting-text-entry-setting-in-ubuntu-16-04-using-terminal
+#       command: gsettings set org.gnome.desktop.input-sources sources "[('xkb','gb')]"
+#       become_user: vagrant

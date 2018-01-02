@@ -18,6 +18,8 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.name = "nginx-test"
   end
+
+  config.vm.network "forwarded_port", guest: 80, host: 8080
   
   # Activates Ansible to begin provisioning
   config.vm.provision "ansible_local" do |ansible|

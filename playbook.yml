@@ -37,6 +37,15 @@
          group: vagrant
          mode: 0744
 
+     - name: copy web files
+       copy:
+         src: files/website/
+         dest: /var/www/html
+         mode: 0744
+
+
+
+
      - name: Create missing locales # https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue
        command: sudo locale-gen "en_GB.UTF-8"
 

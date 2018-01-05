@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
     v.name = "nginx-test"
   end
 
+  # From https://www.vagrantup.com/docs/networking/forwarded_ports.html
   config.vm.network "forwarded_port", guest: 80, host: 8080
   
   # Activates Ansible to begin provisioning

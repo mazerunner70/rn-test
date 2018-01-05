@@ -18,8 +18,27 @@
          name: vagrant
          password: "{{ 'test1'|password_hash('sha256') }}"
 
-     - name: Install apache server
-       apt: name=apache2
+     - name: Install Key packages
+       apt: name={{item}} state=latest install_recommends=no # This style described in http://docs.ansible.com/ansible/latest/playbooks_loops.html#standard-loops
+       with_items:
+         - apache2
+         - ruby
+         - ruby-all-dev
+
+     - name: Ready to install Node 9 # as advised https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+       shell: "curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -"
+
+     - name: Install Node 9
+       apt: name={{item}} state=latest install_recommends=no # This style described in http://docs.ansible.com/ansible/latest/playbooks_loops.html#standard-loops
+       with_items:
+         - nodejs 
+
+     - gem:
+         name: "{{ item }}"
+         state: present
+         user_install: no
+       with_items:
+         - sass
 
      - name: Set startup script
        copy:
@@ -43,7 +62,8 @@
          dest: /var/www/html
          mode: 0744
 
-
+#     - name: Compile scss file
+#       shell: scss /var/www/html/css/table1.scss /var/www/html/css/table1.css
 
 
      - name: Create missing locales # https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue

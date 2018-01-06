@@ -11,9 +11,10 @@ class Server {
   }
 
   start() {
-    var server = restify.createServer();
-    server.get('/hello/:name', respond);
-    server.head('/hello/:name', respond);
+    var server = this.restify.createServer();
+    server.get('/hello/:name', this.respond);
+    server.get('/provision/:name', this.respond);
+    server.head('/hello/:name', this.respond);
 
     server.listen(8080, function() {
       console.log('%s listening at %s', server.name, server.url);

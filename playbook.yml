@@ -1,5 +1,7 @@
 ---
 - hosts: all
+  vars:
+    nodejs_guest_dir: /opt
   become: true
   tasks:
      - name: Update apt-cache 
@@ -42,7 +44,7 @@
 
      - name: Set startup script
        copy:
-         src: files/startup_config.sh
+         src: files/scripts/startup_config.sh
          dest: /home/vagrant/bin/
          owner: vagrant
          group: vagrant
@@ -50,7 +52,7 @@
 
      - name: initiate script for startup
        copy:
-         src: files/.gnomerc
+         src: files/scripts/.gnomerc
          dest: /home/vagrant/.gnomerc
          owner: vagrant
          group: vagrant
@@ -85,3 +87,28 @@
 #     - name: Change text entry to GB #https://askubuntu.com/questions/861662/setting-text-entry-setting-in-ubuntu-16-04-using-terminal
 #       command: gsettings set org.gnome.desktop.input-sources sources "[('xkb','gb')]"
 #       become_user: vagrant
+
+     - name: Copy nodejs files across
+       copy: 
+         src: files/nodejs
+         dest: /opt
+
+     - name: Install npm dependencies
+       npm:
+         path: /opt/nodejs/provisioner
+
+     - name: Enable Apache proxy http module
+       apache2_module:
+         state: present
+         name: proxy_http
+
+     - name: Add proxy path
+       copy:
+         src: files/apache2/conf/proxy.conf
+         dest: /etc/apache2/mods-enabled/proxy.conf
+
+     - name: Reset Apache service
+       service:
+         name: httpd
+         state: restarted
+

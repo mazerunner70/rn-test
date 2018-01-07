@@ -38,19 +38,9 @@ function CreateTableView(objArray, theme, enableHeader) {
 
 
         $(document).ready(function () {
-            var originalData = [
-            { "dependency": { "name": "Rasbian", "curr_ver": 1, "last_update": "010-02-18T17:59:41", "new_ver": 60, "last_check": "010-02-18T17:59:41"} },
-            { "dependency": { "name": "Rasbian", "curr_ver": 1, "last_update": "010-02-18T17:59:41", "new_ver": 60, "last_check": "010-02-18T17:59:41"} },
-            { "dependency": { "name": "Rasbian", "curr_ver": 1, "last_update": "010-02-18T17:59:41", "new_ver": 60, "last_check": "010-02-18T17:59:41"} },
-        ];
-
-            var data = $.map(originalData, function (ele) {
-                return { name: ele.dependency.name, 
-			curr_ver : ele.dependency.curr_ver,   
-			last_update : ele.dependency.last_update,   
-			new_ver : ele.dependency.new_ver,   
-			last_check : ele.dependency.last_check };
-            });
-
+          $.get("http://localhost:8080/nodejs/William", function(data, status) {
+            console.log("Data: " + data + "\nStatus: " + status);
             $('#dependencies').append(CreateTableView(data, 'blueTable', true));
+          });
+
         });

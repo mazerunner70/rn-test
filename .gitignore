@@ -14,3 +14,7 @@ jspm_packages/
 #  Vagrant files #
 ##################
 .vagrant
+
+# Istanbul code coverage #
+##########################
+.nyc_output/

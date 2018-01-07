@@ -24,6 +24,7 @@ Vagrant.configure("2") do |config|
   
   # Activates Ansible to begin provisioning
   config.vm.provision "ansible_local" do |ansible|
+#    ansible.verbose  = "-vvv"
     ansible.playbook = "playbook.yml"
   end
 end

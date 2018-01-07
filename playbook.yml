@@ -89,13 +89,18 @@
 #       become_user: vagrant
 
      - name: Copy nodejs files across
+       sudo: yes
        copy: 
          src: files/nodejs
          dest: /opt
 
      - name: Install npm dependencies
-       npm:
-         path: /opt/nodejs/provisioner
+#       npm: Bug reported https://github.com/ansible/ansible/issues/33555
+#         path: /opt/nodejs/provisioner
+       command: npm install
+       args:
+         chdir: /opt/nodejs/provisioner
+         creates: /opt/nodejs/provisioner/node_modules/
 
      - name: Enable Apache proxy http module
        apache2_module:
@@ -109,6 +114,6 @@
 
      - name: Reset Apache service
        service:
-         name: httpd
-         state: restarted
+         name: apache2
+         state: reloaded
 

@@ -18,3 +18,13 @@ jspm_packages/
 # Istanbul code coverage #
 ##########################
 .nyc_output/
+
+# password file #
+#################
+ansible_vault_password.txt
+
+# old ansible files #
+#####################
+base.yml
+oldfiles/
+

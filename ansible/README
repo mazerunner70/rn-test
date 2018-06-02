@@ -1,0 +1,6 @@
+Notes on Ansible playbook structure
+
+* follows closely to http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#content-organization
+
+
+

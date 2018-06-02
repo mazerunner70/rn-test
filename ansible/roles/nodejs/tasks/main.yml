@@ -1,0 +1,27 @@
+---
+# file: roles/nodejs/tasks/main.yml
+
+
+# Install nodejs from specific repo
+- name: Ready to install Node 10 # as advised https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+  shell: "curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -"
+
+- name: Install Node 10
+  become: true
+  apt: name={{item}} state=latest install_recommends=no # This style described in http://docs.ansible.com/ansible/latest/playbooks_loops.html#standard-loops
+  with_items:
+    - nodejs 
+
+- name: Copy nodejs files across
+  become: true
+  copy: 
+    src: files/nodejs
+    dest: /opt
+
+- name: Install npm dependencies
+  become: true
+  command: npm install
+  args:
+    chdir: /opt/nodejs/provisioner
+    creates: /opt/nodejs/provisioner/node_modules/
+

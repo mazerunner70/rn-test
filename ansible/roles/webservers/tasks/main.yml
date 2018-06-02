@@ -1,0 +1,35 @@
+---
+# file: roles/webserver/tasks/main.yml
+
+
+- name: Install Key packages
+  become: true
+  apt: name={{item}} state=latest install_recommends=no # This style described in http://docs.ansible.com/ansible/latest/playbooks_loops.html#standard-loops
+  with_items:
+    - apache2
+
+- name: copy web files
+  become: true
+  copy:
+    src: files/website/
+    dest: /var/www/html
+    mode: 0744
+
+- name: Enable Apache proxy http module
+  become: true
+  apache2_module:
+    state: present
+    name: proxy_http
+
+- name: Add proxy path
+  become: true
+  copy:
+    src: files/apache2/conf/proxy.conf
+    dest: /etc/apache2/mods-enabled/proxy.conf
+
+- name: Reset Apache service
+  become: true
+  service:
+    name: apache2
+    state: reloaded
+

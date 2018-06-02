@@ -19,4 +19,5 @@
   apt: name={{item}} state=latest install_recommends=no # This style described in http://docs.ansible.com/ansible/latest/playbooks_loops.html#standard-loops
   with_items:
     - ubuntu-desktop
+    - indicator-session # https://askubuntu.com/questions/362556/why-cant-i-shut-down-after-installing-ubuntu-desktop-from-minimal-cd
     - gnome-terminal

@@ -3,7 +3,7 @@
 
 - name: Create missing locales # https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue
   become: true	
-  command: locale-gen "en_GB.UTF-8"
+  command: locale-gen en_GB.UTF-8
 
 # Add terminal to unity start bar
 - name: script to add termial to unity bar
@@ -22,4 +22,6 @@
     group: vagrant
     mode: 0744
 
-
+- name: dev locale
+  become: true
+  action: command update-locale LC_ALL=en_GB.utf8

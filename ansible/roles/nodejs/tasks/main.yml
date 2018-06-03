@@ -13,15 +13,13 @@
     - nodejs 
 
 - name: Copy nodejs files across
-  become: true
   copy: 
     src: files/nodejs
-    dest: /opt
+    dest: /home/vagrant/
 
-- name: Install npm dependencies
-  become: true
+- name: Install npm dependencies for provisioner project
   command: npm install
   args:
-    chdir: /opt/nodejs/provisioner
-    creates: /opt/nodejs/provisioner/node_modules/
+    chdir: /home/vagrant/nodejs/provisioner
+    creates: /home/vagrant/nodejs/provisioner/node_modules/
 

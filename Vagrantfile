@@ -12,6 +12,8 @@ Vagrant.configure("2") do |config|
   # Bring up a separate window for the gui
   config.vm.provider "virtualbox" do |v|
     v.gui = true
+    v.cpus = 4
+    v.memory = 3072
   end
 
   # Identify the VM in virtualbox

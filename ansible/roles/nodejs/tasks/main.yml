@@ -11,11 +11,16 @@
   apt: name={{item}} state=latest install_recommends=no # This style described in http://docs.ansible.com/ansible/latest/playbooks_loops.html#standard-loops
   with_items:
     - nodejs 
+- name: set base dev dir
+  file:
+    path: /home/vagrant/dev
+    state: directory
 
-- name: Copy nodejs files across
-  copy: 
-    src: files/nodejs
-    dest: /home/vagrant/
+- name: create symlink
+  file: 
+    src: /vagrant/ansible/roles/nodejs/files/nodejs
+    dest: /home/vagrant/dev/nodejs
+    state: link
 
 - name: Install npm dependencies for provisioner project
   command: npm install

@@ -1,0 +1,7 @@
+---
+# file: database.yml
+- hosts: dev_env
+  roles:
+    - common
+    - database
+

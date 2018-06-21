@@ -15,7 +15,7 @@ export default class Server {
   }
   drespond(req, res, next) {
     console.log(`Server.drespond()-> ${this}`);
-    res.send(this.dependencyTracker.respond());
+    res.send(this.dependencyTracker.respond(req));
     next();
   }
   start() {
@@ -23,7 +23,8 @@ export default class Server {
     this.server.get('/hello/:name', this.respond);
     this.server.get('/provision/:name', this.drespond.bind(this));
     this.server.head('/hello/:name', this.respond);
-    console.log(`1=${this}`);
+    //this.server.get('/provision/:name', this.dependencyTracker.get.bind(this));
+    //console.log(`1=${this}`);
     this.server.listen(8080, this.serverStartUp.bind(this));
   }
   serverStartUp() {

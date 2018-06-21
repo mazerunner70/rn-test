@@ -1,0 +1,14 @@
+---
+# file: roles/database/tasks/main.yml
+
+
+# Install sqlite
+
+- name: Install sqlite
+  become: true
+  apt: name={{item}} state=latest install_recommends=no # This style described in http://docs.ansible.com/ansible/latest/playbooks_loops.html#standard-loops
+  with_items:
+    - g++
+    - sqlite3 # https://www.digitalocean.com/community/tutorials/how-and-when-to-use-sqlite
+    - libsqlite3-dev 
+

@@ -7,6 +7,7 @@ export default class Server {
     this.restify = restify;
     this.dependencyTracker = new DependencyTracker();
     console.log(`Server()-> ${this}`);
+    console.log(`db path: ${process.env.SQLITE_DB_PATH}`);
   }
   respond(req, res, next) {
     console.log(`Server.respond()-> ${this}`);

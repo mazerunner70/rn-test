@@ -1,7 +1,8 @@
 import sqlite3 from 'sqlite3';
+
 export default class DependencyTracker {
   constructor() {
-    this.db = new sqlite3.Database('./db/provisioner.db');
+    this.db = new sqlite3.Database(process.env.SQLITE_DB_PATH);
   }
 
   static sayHello(asd) {

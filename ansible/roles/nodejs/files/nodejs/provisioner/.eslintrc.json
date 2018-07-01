@@ -1,3 +1,4 @@
 {
-    "extends": "airbnb-base"
+    "extends": ["plugin:flowtype/recommended", "airbnb-base"],
+    "plugins": ["flowtype"]
 }

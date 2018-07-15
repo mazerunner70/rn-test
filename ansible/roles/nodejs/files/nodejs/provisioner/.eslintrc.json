@@ -1,4 +1,7 @@
 {
     "extends": ["plugin:flowtype/recommended", "airbnb-base"],
-    "plugins": ["flowtype"]
+    "plugins": ["flowtype", "jest"],
+    "env": {
+        "jest": true
+    }
 }

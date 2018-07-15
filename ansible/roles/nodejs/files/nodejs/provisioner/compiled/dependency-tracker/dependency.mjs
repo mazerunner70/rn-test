@@ -1,14 +1,14 @@
-// @flow
+//      
 export default class Dependency {
-  name: string;
-  currVer: number;
-  lastCheck: Date;
-  constructor(name: string, currVer: number, lastCheck: Date) {
+               
+                  
+                  
+  constructor(name        , currVer        , lastCheck      ) {
     this.name = name;
     this.currVer = currVer;
     this.lastCheck = lastCheck;
   }
-  static fromJsonString(jsonString: string) {
+  static fromJsonString(jsonString        ) {
     console.log(`jsonString: ${JSON.parse(jsonString)}`);
     const jsonObject = JSON.parse(jsonString);
     return new Dependency(
@@ -17,7 +17,7 @@ export default class Dependency {
       new Date(jsonObject.lastCheck),
     );
   }
-  static fromJsonObject(jsonObject: Object) {
+  static fromJsonObject(jsonObject        ) {
     console.log('last date', jsonObject.lastCheck);
     return new Dependency(
       jsonObject.name,

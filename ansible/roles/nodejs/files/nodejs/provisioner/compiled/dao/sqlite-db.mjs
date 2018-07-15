@@ -1,6 +1,6 @@
 import sqlite3 from 'sqlite3';
 
-// @flow
+//      
 const getNewDb = dbFilePath => new Promise((resolve, reject) => {
   const db = new sqlite3.Database(dbFilePath || process.env.SQLITE_DB_PATH);
   db.on('open', () => resolve(db));

@@ -25,6 +25,6 @@
 - name: Install npm dependencies for provisioner project
   command: npm install
   args:
-    chdir: /home/vagrant/nodejs/provisioner
-    creates: /home/vagrant/nodejs/provisioner/node_modules/
+    chdir: /home/vagrant/dev/nodejs/provisioner
+    creates: /home/vagrant/dev/provisioner/node_modules/
 

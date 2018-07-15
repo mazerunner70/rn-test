@@ -1,9 +1,9 @@
 
 
-// @flow
+//      
 export default class DependencyRepo {
-  dao: any;
-  constructor(dao: any) {
+           
+  constructor(dao     ) {
     this.dao = dao;
   }
   initialise() {
@@ -14,7 +14,7 @@ export default class DependencyRepo {
       last_check NUMERIC )`;
     return this.dao.run(sql);
   }
-  insert(name: string, currVer: string, lastCheck: Date) {
+  insert(name        , currVer        , lastCheck      ) {
     console.log(`Inserting name:${name}, currVer: ${currVer}, lastCheck: ${String(lastCheck)}`);
     return this.dao.run(
       `INSERT INTO dependency (
@@ -26,7 +26,7 @@ export default class DependencyRepo {
       .then(success => `status: SUCCESS, details:${success}`)
       .catch(failure => `status: FAILURE, detail: ${failure}`);
   }
-  update(name: string, currVer: string, lastCheck: Date) {
+  update(name        , currVer        , lastCheck      ) {
     return this.dao.run(
       `UPDATE dependency SET ( 
         curr_ver,  
@@ -34,14 +34,14 @@ export default class DependencyRepo {
       [name, currVer, DependencyRepo.dateAsUtcString(lastCheck)],
     );
   }
-  delete(name: string) {
+  delete(name        ) {
     return this.dao.run(
       `DELETE FROM dependency 
       WHERE name = ?`,
       [name],
     );
   }
-  getByName(name: string) {
+  getByName(name        ) {
     const result = this.dao.get(
       `SELECT * FROM dependency
       WHERE name = ?`,
@@ -70,10 +70,10 @@ export default class DependencyRepo {
       }));
     return result;
   }
-  static dateAsUtcString(date: Date) {
+  static dateAsUtcString(date      ) {
     return date.toUTCString();
   }
-  static utcStringAsDate(utcString: string) {
+  static utcStringAsDate(utcString        ) {
     // format must be ddd, dd mmm yyyy hh:mm:ss Z
     return new Date(utcString);
   }

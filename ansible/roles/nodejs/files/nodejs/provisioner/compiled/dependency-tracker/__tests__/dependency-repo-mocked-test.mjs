@@ -11,8 +11,8 @@ describe('confirm DAO init correctly', () => {
     const dependencyRepo = new DependencyRepo(dao);
     expect(dependencyRepo.dao).toEqual(dao);
     const result = await dependencyRepo.initialise();
-    expect (mockRun).toHaveBeenCalledTimes(1);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(1);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
   });
 });
 
@@ -38,14 +38,14 @@ describe('confirm insert works', () => {
     expect(dependencyRepo.dao).toEqual(dao);
     // create table
     let result = await dependencyRepo.initialise();
-    expect (mockRun).toHaveBeenCalledTimes(1);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(1);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
     // insert row
     const dateString = 'Mon, 01 Jan 2018 01:20:30 GMT';
     const date = new Date(dateString);
     result = await dependencyRepo.insert('name', '3.2', date);
-    expect (mockRun).toHaveBeenCalledTimes(2);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(2);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
   });
 });
 describe('confirm update works', () => {
@@ -57,20 +57,20 @@ describe('confirm update works', () => {
     expect(dependencyRepo.dao).toEqual(dao);
     // create table
     let result = await dependencyRepo.initialise();
-    expect (mockRun).toHaveBeenCalledTimes(1);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(1);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
     // insert row
     let dateString = 'Mon, 01 Jan 2018 01:20:30 GMT';
     let date = new Date(dateString);
     result = await dependencyRepo.insert('name', '3.2', date);
-    expect (mockRun).toHaveBeenCalledTimes(2);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(2);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
     // update row
     dateString = 'Mon, 01 Jan 2018 01:20:30 GMT';
     date = new Date(dateString);
-    result = await dependencyRepo.update('name', '33', date);
-    expect (mockRun).toHaveBeenCalledTimes(3);
-    expect (result).toEqual({ mocked: true });
+    result = await dependencyRepo.update({ name: 'name', currVer: '33', lastCheck: date });
+    expect(mockRun).toHaveBeenCalledTimes(3);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
   });
 });
 describe('confirm delete works', () => {
@@ -82,18 +82,18 @@ describe('confirm delete works', () => {
     expect(dependencyRepo.dao).toEqual(dao);
     // create table
     let result = await dependencyRepo.initialise();
-    expect (mockRun).toHaveBeenCalledTimes(1);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(1);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
     // insert row
-    let dateString = 'Mon, 01 Jan 2018 01:20:30 GMT';
-    let date = new Date(dateString);
+    const dateString = 'Mon, 01 Jan 2018 01:20:30 GMT';
+    const date = new Date(dateString);
     result = await dependencyRepo.insert('name', '3.2', date);
-    expect (mockRun).toHaveBeenCalledTimes(2);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(2);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
     // delete row
     result = await dependencyRepo.delete('name');
-    expect (mockRun).toHaveBeenCalledTimes(3);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(3);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
   });
 });
 describe('confirm get works', () => {
@@ -105,19 +105,19 @@ describe('confirm get works', () => {
     expect(dependencyRepo.dao).toEqual(dao);
     // create table
     let result = await dependencyRepo.initialise();
-    expect (mockRun).toHaveBeenCalledTimes(1);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(1);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
     // insert row
-    let dateString = 'Mon, 01 Jan 2018 01:20:30 GMT';
-    let date = new Date(dateString);
+    const dateString = 'Mon, 01 Jan 2018 01:20:30 GMT';
+    const date = new Date(dateString);
     result = await dependencyRepo.insert('name', '3.2', date);
-    expect (mockRun).toHaveBeenCalledTimes(2);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(2);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
     // get row
     result = await dependencyRepo.getByName('name');
-    expect (mockGet).toHaveBeenCalledTimes(1);
-    console.log(result);
-    expect (result).toEqual({ mockedGet: true });
+    expect(mockGet).toHaveBeenCalledTimes(1);
+    // console.log(result);
+    expect(result).toEqual({ currVer: 2.4, lastCheck: new Date('2018-01-01T01:20:30.000Z'), name: 'dummy' });
   });
 });
 describe('confirm all works', () => {
@@ -129,17 +129,17 @@ describe('confirm all works', () => {
     expect(dependencyRepo.dao).toEqual(dao);
     // create table
     let result = await dependencyRepo.initialise();
-    expect (mockRun).toHaveBeenCalledTimes(1);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(1);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
     // insert row
-    let dateString = 'Mon, 01 Jan 2018 01:20:30 GMT';
-    let date = new Date(dateString);
+    const dateString = 'Mon, 01 Jan 2018 01:20:30 GMT';
+    const date = new Date(dateString);
     result = await dependencyRepo.insert('name', '3.2', date);
-    expect (mockRun).toHaveBeenCalledTimes(2);
-    expect (result).toEqual({ mocked: true });
+    expect(mockRun).toHaveBeenCalledTimes(2);
+    expect(result).toEqual({ details: { mocked: true }, status: 'SUCCESS' });
     result = await dependencyRepo.getAll();
-    expect (mockAll).toHaveBeenCalledTimes(1);
+    expect(mockAll).toHaveBeenCalledTimes(1);
     console.log(result);
-    expect (result).toEqual({ mockedAll: true });
+    expect(result).toEqual([{ currVer: 2.4, lastCheck: new Date('2018-01-01T01:20:30.000Z'), name: 'dummy' }]);
   });
 });

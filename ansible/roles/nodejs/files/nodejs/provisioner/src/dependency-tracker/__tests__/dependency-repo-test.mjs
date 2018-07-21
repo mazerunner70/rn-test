@@ -15,7 +15,8 @@ describe('test add one row', () => {
       expect(true).toEqual(false);
     }
     try {
-      await dependencyRepo.insert('dummy', '2.4', new Date('Mon, 01 Jan 2018 01:20:30 GMT'));
+      const response = await dependencyRepo.insert('dummy', '2.4', new Date('Mon, 01 Jan 2018 01:20:30 GMT'));
+      console.log('insert', response);
     } catch (e) {
       console.log(e);
       expect(true).toEqual(false);

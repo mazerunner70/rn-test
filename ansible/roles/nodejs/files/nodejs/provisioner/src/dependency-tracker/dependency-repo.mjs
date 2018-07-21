@@ -12,7 +12,9 @@ export default class DependencyRepo {
       name TEXT PRIMARY KEY, 
       curr_ver NUMERIC,  
       last_check NUMERIC )`;
-    return this.dao.run(sql);
+    return this.dao.run(sql)
+      .then(success => ({ status: 'SUCCESS', details: success }))
+      .catch(failure => ({ status: 'FAILURE', details: failure }));
   }
   insert(name: string, currVer: string, lastCheck: Date) {
     console.log(`Inserting name:${name}, currVer: ${currVer}, lastCheck: ${String(lastCheck)}`);
@@ -23,23 +25,28 @@ export default class DependencyRepo {
         last_check) VALUES (?, ?, ?)`,
       [name, currVer, DependencyRepo.dateAsUtcString(lastCheck)],
     )
-      .then(success => `status: SUCCESS, details:${success}`)
-      .catch(failure => `status: FAILURE, detail: ${failure}`);
+      .then(success => ({ status: 'SUCCESS', details: success }))
+      .catch(failure => ({ status: 'FAILURE', details: failure }));
   }
-  update(name: string, currVer: string, lastCheck: Date) {
+  update({ name, currVer, lastCheck }: {name: string, currVer: string, lastCheck: Date}) {
+  // update(name: string, currVer: string, lastCheck: Date) {
     return this.dao.run(
       `UPDATE dependency SET ( 
         curr_ver,  
         last_check) = (?, ?) WHERE name = ?`,
       [name, currVer, DependencyRepo.dateAsUtcString(lastCheck)],
-    );
+    )
+      .then(success => ({ status: 'SUCCESS', details: success }))
+      .catch(failure => ({ status: 'FAILURE', details: failure }));
   }
   delete(name: string) {
     return this.dao.run(
       `DELETE FROM dependency 
       WHERE name = ?`,
       [name],
-    );
+    )
+      .then(success => ({ status: 'SUCCESS', details: success }))
+      .catch(failure => ({ status: 'FAILURE', details: failure }));
   }
   getByName(name: string) {
     const result = this.dao.get(
@@ -47,12 +54,12 @@ export default class DependencyRepo {
       WHERE name = ?`,
       [name],
     ).then((successResult) => {
-      const res = {
+      const res = successResult && {
         name: successResult.name,
         currVer: successResult.curr_ver,
         lastCheck: DependencyRepo.utcStringAsDate(successResult.last_check),
       };
-      console.log(res);
+      console.log(`Getting name:${name}, res: ${JSON.stringify(res)}`);
       return res;
     });
     return result;

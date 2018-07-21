@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import routes from './routes/index.mjs';
 import dependencyRoutes from './routes/dependency.mjs';
@@ -11,6 +12,8 @@ process.title = 'myApp'; // Allows for stop signal:
 const app = express();
 const PORT = process.env.PORT || 8080;
 app.use(bodyParser.json());
+app.use(cors());
+
 app.use('/', routes);
 app.use('/dependency', dependencyRoutes);
 

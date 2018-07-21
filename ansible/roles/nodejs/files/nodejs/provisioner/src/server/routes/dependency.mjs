@@ -17,11 +17,30 @@ async function dependencyRoute(dependencyRouter) {
       data: await dependencyRepo.getAll(),
     });
   });
+
+  dependencyRouter.get('/:name', async (req, res) => {
+    const reqName = req.params.name;
+    res.status(200).send({
+      data: await dependencyRepo.getByName(reqName),
+    });
+  });
+
+  dependencyRouter.put('/:name', async (req, res) => {
+    const reqName = req.params.name;
+    const dependency = Dependency.fromJsonObject(req.body);
+    if (reqName !== dependency.name) throw new Error(`update name ${reqName} must be the same as request body name ${dependency.name}`);
+    res.status(200).send(await dependencyRepo.update(dependency));
+  });
+
+  dependencyRouter.delete('/:name', async (req, res) => {
+    const reqName = req.params.name;
+    res.status(200).send(await dependencyRepo.delete(reqName));
+  });
+
   dependencyRouter.post('/', async (req, res) => {
-    console.log(`body is:${req.body}`);
-    console.log(req.body);
     const dependency = Dependency.fromJsonObject(req.body);
     const result = await dependencyRepo.insert(dependency.name, dependency.currVer, dependency.lastCheck);
+    console.log('-->', result);
     res.status(200).send(result);
   });
   console.log(`Db set up: ${db}`);

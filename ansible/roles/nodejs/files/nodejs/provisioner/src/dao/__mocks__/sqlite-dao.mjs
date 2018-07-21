@@ -11,15 +11,13 @@ export const mockGet = jest.fn();
 mockGet
   .mockReturnValue(new Promise((resolve, reject) => {
     console.log('mock of get');
-    resolve({ mockedGet: true });
+    resolve({ name: 'dummy', curr_ver: 2.4, last_check: 'Mon, 01 Jan 2018 01:20:30 GMT' });
   }));
 export const mockAll = jest.fn();
 mockAll
   .mockReturnValue(new Promise((resolve, reject) => {
     console.log('mock of all');
-    resolve({ mockedAll: true });
+    resolve([{ name: 'dummy', curr_ver: 2.4, last_check: 'Mon, 01 Jan 2018 01:20:30 GMT' }]);
   }));
-const mock = jest.fn().mockImplementation(() => {
-  return { run: mockRun, get: mockGet, all: mockAll };
-});
+const mock = jest.fn().mockImplementation(() => ({ run: mockRun, get: mockGet, all: mockAll }));
 export default mock;

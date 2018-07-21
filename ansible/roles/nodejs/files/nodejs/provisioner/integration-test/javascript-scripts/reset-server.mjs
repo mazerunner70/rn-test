@@ -76,31 +76,31 @@ function tailLogLines(targetText, fileName) {
   });
 }
 
-  // let lineNumber = 0;
-  // console.log(fileName);
-  // return new Promise((resolve, reject) => {
-  //   const stream = fs.createReadStream(fileName)
-  //     .pipe(es.split())
-  //     .pipe(es.mapSync((line) => {
-  //       stream.pause();
-  //       lineNumber += 1;
-  //       console.log(line);
-  //       // if (line.match(/Db set up/)) {
-  //       //   // console.log(line);
-  //       //   // stream.destroy();
-  //       //   // resolve();
-  //       // } else {
-  //       //   console.log('--', lineNumber, line);
-  //       stream.resume();
-  //       // }
-  //     })
-  //       .on('error', (err) => {
-  //         console.log('Error while reading file', err);
-  //       })
-  //       .on('end', () => {
-  //         console.log('read whole file');
-  //       }));
-  // });
+// let lineNumber = 0;
+// console.log(fileName);
+// return new Promise((resolve, reject) => {
+//   const stream = fs.createReadStream(fileName)
+//     .pipe(es.split())
+//     .pipe(es.mapSync((line) => {
+//       stream.pause();
+//       lineNumber += 1;
+//       console.log(line);
+//       // if (line.match(/Db set up/)) {
+//       //   // console.log(line);
+//       //   // stream.destroy();
+//       //   // resolve();
+//       // } else {
+//       //   console.log('--', lineNumber, line);
+//       stream.resume();
+//       // }
+//     })
+//       .on('error', (err) => {
+//         console.log('Error while reading file', err);
+//       })
+//       .on('end', () => {
+//         console.log('read whole file');
+//       }));
+// });
 // }
 
 // start nodejs
@@ -133,5 +133,6 @@ async function doWork() {
   await startNodeJs();
 }
 
-doWork();
+export default doWork;
+
 

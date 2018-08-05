@@ -101,11 +101,11 @@ export default class DataGrid extends React.Component {
     })
   }
 
-  submitValues() {
+  submitValues(event) {
     event.preventDefault();
     console.log('020','got here');
-    alert('Hi')
-    
+    console.log(this.props);
+    this.props.processSubmitedValues(this.state.values);
   }
 
   render() {
@@ -238,22 +238,26 @@ class GridEditor extends React.Component {
   constructor (props) {
       super(props);
       this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
       console.log('00-', this.props);
   }
   handleSubmit(event) {
     console.log('fields', this.props);
     const form = new FormData(event.target);
-    console.log(form.keys());
+    console.log(form);
+    console.log(this.props.inputValues);
     for (let id of form.keys()) {
       console.log(id, form[id]);
     }
+    
     // Assume add for now
     event.preventDefault();
-    const addGridRowAction = {
-      type:'addRowToDataGrid',
-      payload: this.state,
-    }
-    store.dispatch(addGridRowAction);
+    this.props.handleSubmitValues(event);
+    // const addGridRowAction = {
+    //   type:'addRowToDataGrid',
+    //   payload: this.state,
+    // }
+    // store.dispatch(addGridRowAction);
   }
   
   handleChange (event) {
@@ -281,7 +285,7 @@ class GridEditor extends React.Component {
     return (
       <EditBoxDiv>
           <FieldsHeader>Select row to edit</FieldsHeader>
-          <form onSubmit={this.props.handleSubmitValues}>
+          <form onSubmit={this.handleSubmit}>
               <FieldsList>
                 {fields}
                 <FieldEntry>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './content-pane.css';
+import { store } from '../../store';
 
 class DefaultContentPane extends Component {
   render() {
@@ -28,6 +29,7 @@ export default class ContentPane extends Component {
   render() {
     const contentRender = this.props.contentRender || <DefaultContentPane/>;
     console.log('---', contentRender);
+    console.log(store.getState());
     return (
       <div className='w3-main' style={{marginLeft:'250px'}}>
         {contentRender}

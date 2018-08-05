@@ -3,6 +3,6 @@ import DataGridReducer from '../components/datagrid/DataGridReducer';
 import DependencyAdminReducer from '../content/dependency-admin/DependencyAdminReducer';
 
 export default combineReducers({
-  DataGridReducer,
-  DependencyAdminReducer
+  datagrid: DataGridReducer,
+  dependencies: DependencyAdminReducer
 })

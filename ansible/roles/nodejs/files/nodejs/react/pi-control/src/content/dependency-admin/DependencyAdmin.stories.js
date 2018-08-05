@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action, configureActions } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 
-import DataGrid from './DataGrid';
+import DependencyAdmin from './DependencyAdmin';
 
 const initialState = { 
     content: [
@@ -42,9 +42,6 @@ const initialState = {
 
   console.log(initialState);
 
-storiesOf('DataGrid', module)
-  .add('default', () => <DataGrid 
-    columnData={ initialState} 
-    content={initialState.content}
-    processSubmitedValues={action('submitted')}/>)
-  .add('empty', () => <DataGrid columnData={ initialState} content={[]}/>);
+storiesOf('DependencyAdmin', module)
+  .add('default', () => <DependencyAdmin />)
+  .add('empty', () => <DependencyAdmin />);

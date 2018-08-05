@@ -63,57 +63,71 @@ export default class DataGrid extends React.Component {
   constructor(props) {
     super(props);
     console.log('-0=', this.props);
-    const values = this.props.columnData.columns.map (({dataField}) => {
-      return {[dataField]:''};
-    });
+    this.columnData = clone(this.props.columnData, true);
+    const values = {};
+    this.columnData.columns.map (({dataField}) => values[dataField]='');
     this.state = {values: values };
-    // this.handleChange = this.handleChange.bind(this);
+    this.clearValues = this.clearValues.bind(this);
+    this.changeValue = this.changeValue.bind(this);
+    this.submitValues = this.submitValues.bind(this);
   }
   
-  selectRow = {
-    mode: 'checkbox',
-    clickToSelect: true,
-    hideSelectColumn: true,
-    bgColor: '#00Bfff',
-    onSelect: (row, isSelect, rowIndex, e) => {
-        console.log('990',row);
-        console.log('001', rowIndex);
-        console.log('001', isSelect);
-        console.log('001', e);
-      if (isSelect) {
-        const values = clone(row, true);
-        this.setState({
-          ...this.state, values: values
-        });
 
-      } else {
-        const values = this.props.columnData.columns.map (({dataField}) => {
-          return {[dataField]:''};
-        })
+  rowEvents = {
+    onClick: (e, row, rowIndex) => {
+      const values = clone(row, true);
         this.setState({
           ...this.state, values: values
         });
-      }
     }
-  };
+  }
+
+  clearValues(event) {
+    event.preventDefault();
+    console.log('050','got here');
+    const values = {};
+    this.columnData.columns.map (({dataField}) => values[dataField]='');
+    console.log('050', this.state, values);
+    this.setState({
+      ...this.state, values: values
+    })
+    console.log('050', this.state);
+  }
+
+  changeValue(event) {
+    event.preventDefault();
+    this.setState({
+      ...this.state, values: {...this.state.values, [event.target.name]: event.target.value} 
+    })
+  }
+
+  submitValues() {
+    event.preventDefault();
+    console.log('020','got here');
+    alert('Hi')
+    
+  }
 
   render() {
-    const columnData = this.props.columnData;
     console.log('-0-', this.props);
-    const content = this.props.content;
     return (
       <OutSideDiv>
         <ColumnDiv>
           <StyleBTable>
             <StyledTable 
-            keyField='name' 
-            data={ content } 
-            columns={ columnData.columns} 
-            selectRow = {this.selectRow} />
-            </StyleBTable>
-          </ColumnDiv>
-          <ColumnDiv>
-            <GridEditor inputValues={this.state.values} columns={ columnData.columns }/>
+              keyField='name' 
+              data={ this.props.content } 
+              columns={ this.columnData.columns}  
+              rowEvents={this.rowEvents}/>
+          </StyleBTable>
+        </ColumnDiv>
+        <ColumnDiv>
+          <GridEditor 
+            inputValues={this.state.values} 
+            columns={ this.columnData.columns } 
+            handleClearValues={this.clearValues}
+            handleChangeValues={this.changeValue} 
+            handleSubmitValues={this.submitValues} />
         </ColumnDiv>
       </OutSideDiv>
     );
@@ -198,6 +212,19 @@ const SubmitButton = styled.input `
   border-bottom: 3px solid #5994ff;
   border-radius: 3px;
   color: #d2e2ff;
+  margin-right:20px;
+  &:hover {
+    background: #6b9fff;
+    color: #fff;
+  }
+`;
+const ClearButton = styled.button `
+  background: #2471ff;
+  border: none;
+  padding: 10px 20px 10px 20px;
+  border-bottom: 3px solid #5994ff;
+  border-radius: 3px;
+  color: #d2e2ff;
   &:hover {
     background: #6b9fff;
     color: #fff;
@@ -215,6 +242,11 @@ class GridEditor extends React.Component {
   }
   handleSubmit(event) {
     console.log('fields', this.props);
+    const form = new FormData(event.target);
+    console.log(form.keys());
+    for (let id of form.keys()) {
+      console.log(id, form[id]);
+    }
     // Assume add for now
     event.preventDefault();
     const addGridRowAction = {
@@ -231,25 +263,30 @@ class GridEditor extends React.Component {
     console.log(this.state);
   }
 
+  handleClear (event) {
+
+  }
+
   render() {
     const fields = this.props.columns.map(({ dataField, text, prompt }) => {
-      const newState = this.props.inputValues[dataField] || '';
+      // const newState = this.props.inputValues[dataField];
       return (
         <FieldEntry key={dataField}>
-          <EntryLabel key={dataField+'e'} htmlFor={dataField}>{text}</EntryLabel>
-          <EntryInput name={dataField+'i'} type="text" maxLength='100' value={newState} onChange={this.handleChange}/>
-          <InputPrompt key={dataField+'p'}>{prompt}</InputPrompt>
+          <EntryLabel htmlFor={dataField}>{text}</EntryLabel>
+          <EntryInput name={dataField} type="text" maxLength='100' value={this.props.inputValues[dataField]} onChange={this.props.handleChangeValues}/>
+          <InputPrompt >{prompt}</InputPrompt>
         </FieldEntry>
       );
     }); 
     return (
       <EditBoxDiv>
           <FieldsHeader>Select row to edit</FieldsHeader>
-          <form onSubmit={this.handleSubmit.bind(this)}>
+          <form onSubmit={this.props.handleSubmitValues}>
               <FieldsList>
                 {fields}
                 <FieldEntry>
                   <SubmitButton type="submit" value="Submit" />
+                  <ClearButton type="reset" onClick={this.props.handleClearValues}>Clear</ClearButton>
                 </FieldEntry>
               </FieldsList>
           </form>

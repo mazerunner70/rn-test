@@ -9,7 +9,7 @@ export default (state, action) => {
     case UPDATE_STORE:
       return updateDependencies(state, action);
     default:
-      return state || [];
+      return state || []; // ensures on redux first run there is no error due to state undefined                   
   }
 }
 

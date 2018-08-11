@@ -9,7 +9,7 @@ export default (state, action) => {
     case UPDATE_STORE:
       return updateDependencies(state, action);
     default:
-      return {...state};
+      return state || [];
   }
 }
 

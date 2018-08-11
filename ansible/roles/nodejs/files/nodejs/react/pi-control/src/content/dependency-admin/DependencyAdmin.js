@@ -4,7 +4,7 @@ import { textFilter } from 'react-bootstrap-table2-filter';
 import 'App.css';
 
 import DataGrid from '../../components/datagrid/DataGrid';
-import { initialiseDependencyAdmin, updateStore } from './DependencyAdminActions';
+import { initialiseDependencyAdmin, updateStore, addData } from './DependencyAdminActions';
 import { store } from '../../store';
 
 
@@ -37,7 +37,7 @@ export default class DependencyAdmin extends React.Component {
   submitValues(values) {
     console.log('030','got here');
     console.log(values);
-    store.dispatch(updateStore(values));
+    store.dispatch(addData(values));
   }
 
 

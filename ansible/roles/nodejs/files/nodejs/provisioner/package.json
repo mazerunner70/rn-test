@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand --coverage --verbose",
-    "start": "nodejs -r dotenv/config --experimental-modules compiled/server/app.mjs dotenv_config_path=./config/production.env",
+    "start": "npm run build && nodejs -r dotenv/config --experimental-modules compiled/server/app.mjs dotenv_config_path=./config/production.env",
     "test-db": "nodejs --experimental-modules database/db-test.js",
     "init-db": "nodejs --experimental-modules database/init-db.js",
     "build": "flow-remove-types src/ -x '.mjs,.js' -d compiled/",

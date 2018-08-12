@@ -1,23 +1,28 @@
 import { clone } from 'lodash';
-import { INIT_DEPENDENCY_ADMIN, UPDATE_STORE } from './DependencyAdminActions';
+import { RELOAD_DEPENDENCY_ADMIN, UPDATE_STORE, DA_DB_REQUEST,
+        DA_DB_SUCCESS, DA_DB_FAILURE} from './DependencyAdminActions';
 
-export default (state, action) => {
+const initialState = [];
+
+export default (state = initialState, action) => {
   console.log('lll', action.type);
   switch (action.type) {
-    case INIT_DEPENDENCY_ADMIN:
+    case RELOAD_DEPENDENCY_ADMIN:
       return [ ...action.payload ];
     case UPDATE_STORE:
       return updateDependencies(state, action);
+    case DA_DB_REQUEST:
+      
     default:
-      return state || []; // ensures on redux first run there is no error due to state undefined                   
+      return state;
   }
 }
+
 
 function updateDependencies(state, action) {
   console.log('ll=', action.payload);
   const row = action.payload;
   const dependencies = clone( state, true);
-  dependencies.filter(dependency => dependency.name !== row.name);
   const response = [ 
     ...dependencies.filter(dependency => dependency.name !== row.name), 
     row ];

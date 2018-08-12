@@ -39,6 +39,7 @@ async function dependencyRoute(dependencyRouter) {
 
   dependencyRouter.post('/', async (req, res) => {
     const dependency = Dependency.fromJsonObject(req.body);
+    console.log('004', dependency);
     const result = await dependencyRepo.insert(dependency.name, dependency.currVer, dependency.lastCheck);
     console.log('-->', result);
     res.status(200).send(result);

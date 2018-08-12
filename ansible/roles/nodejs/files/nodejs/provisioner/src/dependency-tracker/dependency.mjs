@@ -18,7 +18,7 @@ export default class Dependency {
     );
   }
   static fromJsonObject(jsonObject: Object) {
-    console.log('last date', jsonObject.lastCheck);
+    console.log('002', jsonObject);
     return new Dependency(
       jsonObject.name,
       Number(jsonObject.currVer),

@@ -1,14 +1,19 @@
 
 export const INIT_DEPENDENCY_ADMIN = 'initialiseDependencyAdmin';
+export const RELOAD_DEPENDENCY_ADMIN = 'reloadDependencyAdmin';
 export const UPDATE_STORE = 'updateStore';
 export const UPDATE_DB = 'updateDb';
 export const DA_DB_REQUEST = 'dependencyAdminDbRequest';
-export const DA_DB_SUCCESS = 'dependencyAdminDbRequest';
-export const DA_DB_FAILURE = 'dependencyAdminDbRequest';
-export const ADD_DATA = 'ADD_DATA';
+export const DA_DB_SUCCESS = 'dependencyAdminDbSuccess';
+export const DA_DB_FAILURE = 'dependencyAdminDbFailure';
+export const DA_DATA_SUBMITTED = 'daDataSubmitted';
 
 export const initialiseDependencyAdmin = (dependencyList) => ({
   type: INIT_DEPENDENCY_ADMIN,
+  payload: dependencyList
+});
+export const reloadDependencyAdmin = (dependencyList) => ({
+  type: RELOAD_DEPENDENCY_ADMIN,
   payload: dependencyList
 });
 
@@ -17,8 +22,8 @@ export const updateStore = (values) => ({
   payload: values
 });
 
-export const addData = (values) => ({
-  type: ADD_DATA,
+export const dataSubmitted = (values) => ({
+  type: DA_DATA_SUBMITTED,
   payload: values
 });
 

@@ -10,7 +10,7 @@ process.title = 'myApp'; // Allows for stop signal:
 
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 6080; // change so no clash with Jira
 app.use(bodyParser.json());
 app.use(cors());
 

@@ -32,7 +32,7 @@ export default class DependencyAdmin extends React.Component {
   constructor(props) {
     super(props);
     this.submitValues = this.submitValues.bind(this);
-    store.dispatch(initialiseDependencyAdmin( [] ));
+    this.props.onInitialise();
   }
 
   columnData = {
@@ -66,14 +66,14 @@ export default class DependencyAdmin extends React.Component {
 
   render() {
     console.log('==',this.columnData);
-    console.log(store.getState());
+    console.log(this.props.dependencies);
     return (
       <MainPaneDiv>
         <InnerPaneDiv>
           <Header>Dependency Admin</Header>
           <DataGrid 
             columnData={this.columnData} 
-            content={store.getState().dependencies || []}
+            content={this.props.dependencies || []}
             processSubmitedValues={this.submitValues} />
         </InnerPaneDiv>
       </MainPaneDiv>

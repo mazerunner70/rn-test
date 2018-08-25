@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import DependencyAdmin from './DependencyAdmin';
+import { initialiseDependencyAdmin} from './DependencyAdminActions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -9,7 +10,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProp = (dispatch, ownProps) => {
   return {
-
+    onInitialise() {
+      dispatch(initialiseDependencyAdmin( [] ));
+    },
   }
 }
 

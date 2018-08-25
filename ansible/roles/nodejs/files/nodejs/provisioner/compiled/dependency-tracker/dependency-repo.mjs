@@ -1,5 +1,10 @@
 
 
+function getInsertFailCategory(failure     ) {
+  return failure.startsWith('SQL VIOLATION') ? 'Duplicate key' : 'General';
+}
+
+
 //      
 export default class DependencyRepo {
            

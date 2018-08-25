@@ -21,8 +21,9 @@ function fetchDbResponse({crudRule, values}) {
       case 'update' :
         return fetch(baseUrl+'dependency/'+values.name, {
           method: 'put',
-          body: values,
+          body: JSON.stringify(values),
           mode: 'cors',
+          headers: { 'Content-Type': 'application/json'}
         });
       case 'read':
         return fetch(baseUrl+'dependency', {

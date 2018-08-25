@@ -1,6 +1,20 @@
 import sqlite3 from 'sqlite3';
 
-import SqliteDao from '../sqlite-dao.mjs';
+import SqliteDao, { getDb as getSqliteDb } from '../sqlite-dao.mjs';
+
+test('db construction works on valid file', async () => {
+  const db = await getSqliteDb(':memory:');
+  expect(db).not.toBeNull();
+  console.log(db);
+});
+test('db fails on invalid db path', async () => {
+  try {
+    await getSqliteDb('invalid/directory/../r');
+  } catch (err) {
+    expect(err.errno).toEqual(14);
+    expect(err.code).toEqual('SQLITE_CANTOPEN');
+  }
+});
 
 test('db construction works on empty db', () => {
   const db = new sqlite3.Database(':memory:');

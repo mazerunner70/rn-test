@@ -25,10 +25,12 @@ async function dependencyRoute(dependencyRouter) {
     });
   });
 
-  dependencyRouter.put('/:name', async (req, res) => {
+  dependencyRouter.put('/:name', async (req, res, next) => {
     const reqName = req.params.name;
     const dependency = Dependency.fromJsonObject(req.body);
-    if (reqName !== dependency.name) throw new Error(`update name ${reqName} must be the same as request body name ${dependency.name}`);
+    if (reqName !== dependency.name) {
+      return next({ status: 400, message: `put param '${reqName}' must be the same as request body name ${dependency.name}` });
+    }
     res.status(200).send(await dependencyRepo.update(dependency));
   });
 
@@ -42,7 +44,8 @@ async function dependencyRoute(dependencyRouter) {
     console.log('004', dependency);
     const result = await dependencyRepo.insert(dependency.name, dependency.currVer, dependency.lastCheck);
     console.log('-->', result);
-    res.status(200).send(result);
+    const statusCode = result.status === 'FAILURE' && result.details.errno === 19 ? 409 : 200;
+    res.status(statusCode).send(result);
   });
   console.log(`Db set up: ${db}`);
 }

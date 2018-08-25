@@ -1,5 +1,10 @@
 
 
+function getInsertFailCategory(failure: any) {
+  return failure.startsWith('SQL VIOLATION') ? 'Duplicate key' : 'General';
+}
+
+
 // @flow
 export default class DependencyRepo {
   dao: any;

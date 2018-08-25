@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test rendering of Dependency Admin 1`] = `
@@ -20,3 +21,186 @@ exports[`Test rendering of Dependency Admin 1`] = `
   </div>
 </div>
 `;
+||||||| merged common ancestors
+=======
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test rendering of Dependency Admin 1`] = `
+<div
+  className="sc-VigVT hnExUH"
+>
+  <div
+    className="sc-jTzLTM dItSWa"
+  >
+    <h1
+      className="sc-fjdhpX bpefbq"
+    >
+      Dependency Admin
+    </h1>
+    <div
+      className="sc-bdVaJa bEjzhO"
+    >
+      <div
+        className="sc-bwzfXH sUFFa"
+      >
+        <div
+          className="sc-bxivhb dtyIAg"
+        >
+          <div
+            className="react-bootstrap-table"
+          >
+            <table
+              className="table table-bordered"
+              id={undefined}
+            >
+              <thead>
+                <tr
+                  className={undefined}
+                >
+                  <th
+                    className="sortable"
+                    onClick={[Function]}
+                  >
+                    Name
+                    <span
+                      className="order"
+                    >
+                      <span
+                        className="dropdown"
+                      >
+                        <span
+                          className="caret"
+                        />
+                      </span>
+                      <span
+                        className="dropup"
+                      >
+                        <span
+                          className="caret"
+                        />
+                      </span>
+                    </span>
+                  </th>
+                  <th>
+                    Current Version
+                  </th>
+                  <th>
+                    Last Checked
+                  </th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-bwzfXH sUFFa"
+      >
+        <div
+          className="sc-ifAKCX fwEYjo"
+        >
+          <span
+            className="sc-EHOje fZEFZv"
+          >
+            Select row to edit
+          </span>
+          <form
+            onSubmit={[Function]}
+          >
+            <ul
+              className="sc-bZQynM hozfSL"
+            >
+              <li
+                className="sc-gzVnrw ldtKPt"
+              >
+                <label
+                  className="sc-htoDjs hvdFIO"
+                  htmlFor="name"
+                >
+                  Name
+                </label>
+                <input
+                  className="sc-dnqmqq kIdgNu"
+                  maxLength="100"
+                  name="name"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="sc-iwsKbI hAMedX"
+                >
+                  Registered name of dependency
+                </span>
+              </li>
+              <li
+                className="sc-gzVnrw ldtKPt"
+              >
+                <label
+                  className="sc-htoDjs hvdFIO"
+                  htmlFor="currVer"
+                >
+                  Current Version
+                </label>
+                <input
+                  className="sc-dnqmqq kIdgNu"
+                  maxLength="100"
+                  name="currVer"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="sc-iwsKbI hAMedX"
+                >
+                  Version last found
+                </span>
+              </li>
+              <li
+                className="sc-gzVnrw ldtKPt"
+              >
+                <label
+                  className="sc-htoDjs hvdFIO"
+                  htmlFor="lastCheck"
+                >
+                  Last Checked
+                </label>
+                <input
+                  className="sc-dnqmqq kIdgNu"
+                  maxLength="100"
+                  name="lastCheck"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="sc-iwsKbI hAMedX"
+                >
+                  Date checked
+                </span>
+              </li>
+              <li
+                className="sc-gzVnrw ldtKPt"
+              >
+                <input
+                  className="sc-gZMcBi jnTvlg"
+                  type="submit"
+                  value="Submit"
+                />
+                <button
+                  className="sc-gqjmRU kfKnXj"
+                  onClick={[Function]}
+                  type="reset"
+                >
+                  Clear
+                </button>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+>>>>>>> 0079bb0c5e4da0fbb9d6508bd3f47094fc4b0340

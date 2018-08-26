@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-
+import { FieldDiv, FieldLabel, FieldInput } from './styled';
 
 const SimpleForm = props => {
   const {handleSubmit, fields, pristine, reset, submitting} = props;
@@ -8,12 +8,10 @@ const SimpleForm = props => {
   const fieldHtml = fields.map((field) => {
     console.log('09', field);
     return (
-      <div>
-        <label>{field.label}</label>
-        <div>
-          <Field key={field.label} {...field}/>
-        </div>
-      </div>
+      <FieldDiv>
+        <FieldLabel>{field.label}</FieldLabel>
+        <FieldInput key={field.label} {...field}/>
+      </FieldDiv>
     );
   });
   return (

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import DataGrid from '../../components/datagrid/DataGrid';
 import { initialiseDependencyAdmin, dataSubmitted } from './DependencyAdminActions';
-import { store } from '../../store';
+import { store } from '../../state/store';
 
 const MainPaneDiv = styled.div `
   padding-top:64px!important;

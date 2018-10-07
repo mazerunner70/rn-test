@@ -1,0 +1,44 @@
+
+
+.bannerdiv {
+  height: 150px;
+}
+@media (max-width:650px){
+  .bannerdiv {
+    max-height: 50px;
+  }
+}
+
+.navbardiv {
+  color: white;
+  background-color: black;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.rootscreendiv {
+  color: black;
+  background-color: white;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  display: block;
+}
+
+
+td {
+  vertical-align: top;
+}
+
+.nopadding {
+  padding: 0px;
+}
+
+.positionContext { 
+  position: relative;
+}

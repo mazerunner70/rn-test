@@ -10,7 +10,7 @@ function isRowInDependencies( state, row ) {
   try {
     const dependencies = getDependencyList(state);
     console.log('969', dependencies)
-    return dependencies.findIndex(dependency => dependency.name == row.name)>-1;
+    return dependencies.findIndex(dependency => dependency.name === row.name)>-1;
   } catch( err) {
     console.log(err);
   }

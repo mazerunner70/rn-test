@@ -21,3 +21,9 @@
     - ubuntu-desktop
     - indicator-session # https://askubuntu.com/questions/362556/why-cant-i-shut-down-after-installing-ubuntu-desktop-from-minimal-cd
     - gnome-terminal
+
+- name: Install firefox
+  become: true
+  apt: name={{item}} state=latest install_recommends=no
+  with_items:
+    - firefox

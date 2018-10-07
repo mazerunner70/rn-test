@@ -20,11 +20,16 @@ console.log('010',moment());
 console.log('1',input);
   return (
     <div>
-          <DatePicker {...input} dateForm="MM/DD/YYYY" selected={input.value ? moment(input.value) : null} 
-          onChange={date => input.onChange(moment(date))}/>
+          <DatePicker {...input} dateFormat={'DD-MM-YYYY'} selected={input.value ? moment(input.value, 'DD-MM-YYYY') : null} 
+          value = {input.value?moment(input.value,'DD-MM-YYYY').format('DD-MM-YYYY'):""}
+          onChange={handleChange}/>
           {touched && error && <span>{error}</span>}
     </div>
   );
 } 
+
+//          <DatePicker {...input} selected={input.value ? moment(input.value, 'DD-MM-YYYY') : null} 
+//          value = {input.value?moment(input.value,'DD-MM-YYYY').format('DD-MM-YYYY'):""}
+//          onChange={handleChange}/>
 
 export default renderDatePicker;

@@ -4,7 +4,7 @@ import NavBar from './main-page/navbar/NavBar';
 import SideBarMenu from './main-page/sidebar/SideBar';
 import ContentPane from './main-page/contentpane/ContentPane';
 import DependencyAdmin from './content/dependency-admin/DependencyAdminLink';
-import { store } from './store';
+import { store } from './state/store';
 
 
 class App extends Component {

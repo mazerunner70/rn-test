@@ -48,7 +48,8 @@ storiesOf('SimpleForm', module)
     <div>
       <SimpleForm 
         fields={ fields} 
-        handleSubmit={console.log('hyu')}/>
+        onSubmit= { (e) => {console.log('submit', e);}}
+        />
       <Values form='simple'/>
     </div>
     )

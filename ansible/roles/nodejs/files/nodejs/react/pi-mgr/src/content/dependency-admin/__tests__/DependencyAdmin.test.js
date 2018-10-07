@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import renderer from 'react-test-renderer';
 
@@ -16,18 +15,3 @@ test('Test rendering of Dependency Admin', () => {
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
-||||||| merged common ancestors
-=======
-import React from 'react';
-import renderer from 'react-test-renderer';
-
-import DependencyAdmin from '../DependencyAdmin';
-
-test('Test rendering of Dependency Admin', () => {
-  const component = renderer.create(
-    <DependencyAdmin/>,
-  );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
-});
->>>>>>> 0079bb0c5e4da0fbb9d6508bd3f47094fc4b0340

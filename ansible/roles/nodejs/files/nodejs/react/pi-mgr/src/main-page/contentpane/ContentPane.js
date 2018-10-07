@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './content-pane.css';
-import { store } from '../../store';
+import { store } from '../../state/store';
 
 class DefaultContentPane extends Component {
   render() {

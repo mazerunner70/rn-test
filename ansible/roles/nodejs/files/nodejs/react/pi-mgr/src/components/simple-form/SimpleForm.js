@@ -3,12 +3,13 @@ import { Field, reduxForm } from 'redux-form';
 import { FieldDiv, FieldLabel, FieldInput } from './styled';
 
 const SimpleForm = props => {
-  const {handleSubmit, fields, pristine, reset, submitting} = props;
+  const {handleSubmit, fields, pristine, reset, submitting, dirty} = props;
+  console.log('675', dirty)  ;
   console.log('08', props);
   const fieldHtml = fields.map((field) => {
     console.log('09', field);
     return (
-      <FieldDiv>
+      <FieldDiv key={field.label} >
         <FieldLabel>{field.label}</FieldLabel>
         <FieldInput key={field.label} {...field}/>
       </FieldDiv>
@@ -19,7 +20,8 @@ const SimpleForm = props => {
       {fieldHtml}
       <div>
         <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="submit" disabled={pristine || submitting} onClick={reset}>Clear</button>
+        <button type="button" disabled={submitting} onClick={reset}>Reset</button>
+        <button type="button" disabled={dirty} onClick={props.onDelete}>Delete</button>
       </div>
     </form>
   );

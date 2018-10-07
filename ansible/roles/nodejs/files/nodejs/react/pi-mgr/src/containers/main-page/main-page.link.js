@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import MainPage from './main-page';
 import * as actions from '../../state/main-page/actions';
 import { isSidebarVisible, isModalVisible } from '../../state/main-page/selectors';
-import { BrowserRouter, Route, Link, Switch, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 
 const mapStateToProps = (state, ownProps) => {

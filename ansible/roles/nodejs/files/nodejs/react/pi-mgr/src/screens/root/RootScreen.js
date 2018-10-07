@@ -2,8 +2,7 @@ import React from 'react';
 import HomeScreen from '../home';
 import DependencyScreen from '../dependency';
 import { OffsetDiv } from './styled';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 class RootScreen extends React.Component {
   constructor(props) {

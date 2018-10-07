@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Layout from '../../layouts/standard-wordpress';
 import Banner from '../../components/banner/rasp-pi';
 import { Navbar } from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import AboutPopup from '../../components/about';
 import RootScreen from '../../screens/root';
-import { BrowserRouter, Route, Link, Switch, withRouter } from 'react-router-dom';
-import HomeScreen from '../../screens/home';
-import DependencyScreen from '../../screens/dependency';
 
 class MainPage extends React.Component {
 

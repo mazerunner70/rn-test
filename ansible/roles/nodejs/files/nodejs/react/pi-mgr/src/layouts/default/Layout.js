@@ -4,7 +4,8 @@ import './resources/bootstrap.min.css';
 import './resources/bootstrap-theme.min.css';
 import './layout.css';
 
-// Standard wordpress is 
+// default is 
+//  - login bar
 //  - banner, 
 //  - horizontal strap for nav, 
 //  - a sidebar on left for secondary options 
@@ -14,6 +15,11 @@ function Layout (props)  {
   console.log('321', props);
   return (
     <Grid>
+      <Row className='logindiv'>
+        <Col xs={12} md={12} >
+          {props.login}
+        </Col>
+      </Row>
       <Row className='bannerdiv'>
         <Col xs={12} md={12} >
           {props.banner}

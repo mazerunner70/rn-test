@@ -1,9 +1,14 @@
 import moment from 'moment';
+import auth from '../auth';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 console.log('Target URL: ', baseUrl);
 
-function Rest2JS(row: {}) {
+function getAuthHeaders() {
+  return { 'Authorization': `Bearer ${auth.getAccessToken()}`};
+}
+
+function Rest2JS(row) {
   const valueMapping = {
     'name': value => value,
     'currVer': value => value ,
@@ -37,31 +42,32 @@ function fetchDbResponse(crudRule, values) {
         method: 'post',
         body: JSON.stringify(values),
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json', ...getAuthHeaders()}
       });
     case 'update' :
       return fetch(baseUrl+'dependency/'+values.name, {
         method: 'put',
         body: JSON.stringify(values),
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json', ...getAuthHeaders()}
       });
     case 'read':
       console.log('123 Reading', baseUrl+'dependency');
       return getAllResponse(fetch(baseUrl+'dependency', {
         method: 'get',
         mode: 'cors',
+        headers: { 'Content-Type': 'application/json', ...getAuthHeaders()}
       }));
     case 'delete' :
       return fetch(baseUrl+'dependency/'+values.name, {
         method: 'delete',
         body: JSON.stringify(values),
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json', ...getAuthHeaders()}
       });
     default:
       console.log('095');
-      throw (`Invalid crud rule ${crudRule}`);
+      throw (new Error(`Invalid crud rule ${crudRule}`));
   }
 }
 

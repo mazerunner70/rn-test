@@ -1,4 +1,4 @@
-import { all, call, put, takeEvery, select} from 'redux-saga/effects';
+import { call, put, takeEvery, select} from 'redux-saga/effects';
 import moment from 'moment';
 import * as actions from './actions';
 import * as types from './types';
@@ -27,11 +27,6 @@ export function* watchLoadDependencies(action) {
 export function* watchLoadingDependencies(action) {
   console.log('Loading Dependency listening');
   yield takeEvery(types.LOADING, loadingDependencies)
-}
-
-export function* watchLoadedDependencies(action) {
-  console.log('Loaded Dependency listening');
-  yield takeEvery(types.LOADED, loadedDependencies)
 }
 
 export function* watchLoadingDependenciesFail(action) {
@@ -66,21 +61,19 @@ function* loadDependencies(action) {
   }
 }
 
+// eslint-disable-next-line
 function* loadingDependencies(action) {
   console.log('loading dependencies');
 }
 
-function* loadedDependencies(action) {
-  console.log('loaded dependencies', action);
-}
-
+// eslint-disable-next-line
 function* loadedDependenciesFailed(action) {
   console.log('loading dependencies failed', action);
 }
 
 function* submitDependency(action) {
   console.log('submit dependency', action);
-  if (action.payload == []) {
+  if (action.payload === []) {
     return;
   }
   const isUpdate = yield select (selectors.isRowInDependencies, action.payload);

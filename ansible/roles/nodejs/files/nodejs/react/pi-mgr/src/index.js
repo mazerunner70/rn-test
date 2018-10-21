@@ -9,6 +9,7 @@ import { store } from './state/store';
 
 const render = () => {
   console.log('edfe');
+
   ReactDOM.render( 
     <Provider store={store}>
       < App2 /> 

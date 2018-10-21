@@ -15,9 +15,15 @@ const closeSidebar = () => ( {
   type:types.HIDE_SIDEBAR
 })
 
+const doLogin = () => ( {
+  type:types.DO_LOGIN
+})
+
+
 export {
   showAboutModal,
   toggleSidebar,
   hideAboutModal,
-  closeSidebar
+  closeSidebar,
+  doLogin,
 };

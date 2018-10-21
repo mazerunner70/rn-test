@@ -17,3 +17,9 @@ elif choice+computerChoice in humanWins:
 else:
   print "I win!"
 
+
+test1-auth.eu.auth0.com
+_MHhkxuysNcAl5B3qIH2gMQq2L1IvIj2
+
+wpohara@hotmail.co.uk
+elephant1!A

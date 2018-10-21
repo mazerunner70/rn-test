@@ -1,17 +1,14 @@
 import React from 'react';
 import { SidebarDiv, Header, CloseLink, CloseIcon, MenuOption, StyledLink } from './styled';
-import { withRouter } from 'react-router-dom';
 
 export function SideBarButton() {
   return (
+    // eslint-disable-next-line
     <a href='javascript:void(0)' ><i/></a>
   );
 }
 
 class Sidebar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentWillMount() {
     console.log('111');
     // this.props.history.listen(()=> {

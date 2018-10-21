@@ -1,17 +1,14 @@
 import React from 'react';
-import Layout from '../../layouts/standard-wordpress';
+import Layout from '../../layouts/default';
 import Banner from '../../components/banner/rasp-pi';
 import { Navbar } from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import AboutPopup from '../../components/about';
 import RootScreen from '../../screens/root';
+import AuthBar from '../../components/auth';
 
 class MainPage extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-  
   navBarOptions = [
     { 
       name: 'About', 
@@ -43,12 +40,15 @@ class MainPage extends React.Component {
     },
   ];
 
-
   render() {
     return(
       <div>
          <AboutPopup open={this.props.isModalVisible}  handleClose={this.props.hideAboutModal}/>
           <Layout 
+            login={<AuthBar 
+                      isAuthenticated={this.props.isAuthenticated} 
+                      handleLogin={this.props.doLogin}
+                      name={this.props.loggedInName}/>}
             banner={<Banner/>} 
             navbar={<Navbar options={this.navBarOptions}/>}
             sidebar={<Sidebar isVisible={this.props.isSidebarVisible} options={this.sidebarOptions} closeSidebar={this.props.closeSidebar}/>}

@@ -8,11 +8,13 @@ import { combineReducers } from 'redux';
 
 import MainPageReducer from '../main-page/reducers';
 import DependenciesReducer from '../dependencies/reducers';
+import AuthReducer from '../auth/reducers';
 
 const reducer = combineReducers({
   mainpage: MainPageReducer,
   dependencies: DependenciesReducer,
   form: formReducer,
+  auth: AuthReducer,
 })
 const sagaMiddleware = createSagaMiddleware();
 

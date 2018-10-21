@@ -1,6 +1,7 @@
 import express from 'express';
 import * as db from '../../../api/dependencies';
 import moment from 'moment';
+import * as jwt from '../jwt';
 
 function Rest2JS(jsonObject) {
   //{name:'name', currVer: 3, lastCheck: unixTime}
@@ -21,7 +22,7 @@ function JS2Rest(jsObject) {
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', jwt.checkJwt, jwt.setScope(['dependencies:view']), async (req, res) => {
   // console.log('024');
   const data = await db.getAll()
   // console.log('025', data);
@@ -52,7 +53,7 @@ router.delete('/:name', async (req, res) => {
   res.status(200).send(await db.deleteRow(reqName));
 });
 
-router.post('/', async (req, res) => {
+router.post('/', jwt.checkJwt, jwt.setScope(['dependencies:edit']), async (req, res) => {
   const dependency = Rest2JS(req.body);
   console.log('004', dependency);
   const result = await db.insertRow(dependency);

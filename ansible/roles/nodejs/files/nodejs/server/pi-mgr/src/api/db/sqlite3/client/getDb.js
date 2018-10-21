@@ -12,12 +12,12 @@ const GetDb = () :Promise<sqlite3.Database> => new Promise(
     throw new Error(`Already initialised Db at '${dbPath}'`);
   }
   dbPath = process.env.SQLITE_DB_PATH;
-  // console.log('001', dbPath);
+  console.log('001', dbPath);
   const db: sqlite3.Database = new sqlite3.Database(
     dbPath, 
     sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
     (error: Error) => {
-      // console.log('002', error);
+      console.log('002', error);
       if (error) {
         reject(error);
       } else {

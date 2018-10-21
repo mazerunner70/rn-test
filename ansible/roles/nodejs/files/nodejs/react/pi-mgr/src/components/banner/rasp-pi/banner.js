@@ -1,6 +1,6 @@
 import React from 'react';
 import rasppi from './raspberry-pi.jpg';
-import { ScaledImg, HorizDiv, HorizCenterDiv, BannerText, BannerDiv, HorizDiv1, HorizDiv2, HorizDiv3 } from './styled';
+import { ScaledImg, HorizCenterDiv, BannerText, BannerDiv, HorizDiv1, HorizDiv2, HorizDiv3 } from './styled';
 
 
 

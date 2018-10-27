@@ -22,11 +22,11 @@
     dest: /home/vagrant/dev/nodejs
     state: link
 
-- name: Install npm dependencies for provisioner project
-  command: npm install
-  args:
-    chdir: /home/vagrant/dev/nodejs/provisioner
-    creates: /home/vagrant/dev/provisioner/node_modules/
+#- name: Install npm dependencies for provisioner project
+#  command: npm install
+#  args:
+#    chdir: /home/vagrant/dev/nodejs/provisioner
+#    creates: /home/vagrant/dev/provisioner/node_modules/
 
 # add yarn
 - name: identify yarn repo
@@ -53,4 +53,13 @@
   with_items:
     - yarn
 
+- name: Add localhostt to /etc/hosts
+  become: true
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.0\.1'
+    line: '127.0.0.1      localhost localhostt'
+    owner: root
+    group: root
+    mode: 0644
 

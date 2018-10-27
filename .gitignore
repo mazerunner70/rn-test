@@ -39,4 +39,6 @@ coverage/
 # Database #
 ############
 database/*
+!database/.gitkeep
+
  

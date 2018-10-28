@@ -105,4 +105,11 @@
     remote_src: yes
     creates: /opt/adt/android-studio/bin/studio.sh
 
+- name: Configure Android SDK paths
+  lineinfile: dest=/home/vagrant/.bashrc line="{{ item }}"
+  with_items:
+  - 'export ANDROID_HOME=/opt/adt/android-sdk-linux'
+  - 'export ANDROID_TOOLS=$ANDROID_HOME/tools/'
+  - 'export ANDROID_PLATFORM_TOOLS=$ANDROID_HOME/platform-tools/'
+  - 'export PATH=$PATH:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS'
 

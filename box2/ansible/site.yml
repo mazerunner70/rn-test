@@ -1,0 +1,8 @@
+---
+# file: site.yml
+- import_playbook: dev_env.yml
+#- import_playbook: webservers.yml
+#- import_playbook: database.yml
+- import_playbook: nodejs.yml
+- import_playbook: mscode.yml
+

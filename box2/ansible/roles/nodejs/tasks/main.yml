@@ -1,0 +1,108 @@
+---
+# file: roles/nodejs/tasks/main.yml
+
+
+# Install nodejs from specific repo
+- name: Ready to install Node 10 # as advised https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+  shell: "curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -"
+
+- name: Install Node 10
+  become: true
+  apt: name={{item}} state=latest install_recommends=no # This style described in http://docs.ansible.com/ansible/latest/playbooks_loops.html#standard-loops
+  with_items:
+    - nodejs 
+- name: set base dev dir
+  file:
+    path: /home/vagrant/dev
+    state: directory
+
+- name: create symlink
+  file: 
+    src: /vagrant/ansible/roles/nodejs/files/nodejs
+    dest: /home/vagrant/dev/nodejs
+    state: link
+
+#- name: Install npm dependencies for provisioner project
+#  command: npm install
+#  args:
+#    chdir: /home/vagrant/dev/nodejs/provisioner
+#    creates: /home/vagrant/dev/provisioner/node_modules/
+
+# add yarn
+- name: identify yarn repo
+  shell: "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -"
+  
+- name: attach repo
+  shell: 'echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list'
+
+- name: Update apt-cache
+  become: true
+  apt:
+    update_cache: yes
+
+- name: Install yarn   
+  become: true
+  apt: name={{item}} state=latest install_recommends=no # This style described in http://docs.ansible.com/ansible/latest/playbooks_loops.html#standard-loops
+  with_items:
+    - yarn
+
+- name: Add localhostt to /etc/hosts
+  become: true
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.0\.1'
+    line: '127.0.0.1      localhost localhostt'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Add React Native CLI
+  yarn:
+    name: react-native-cli
+    global: yes
+    state: latest
+
+# Add Java
+
+- name: Add repo
+  become: true
+  apt: name=software-properties-common state=latest
+
+- name: Add Oracle repo
+  become: true
+  apt_repository: repo='ppa:webupd8team/java'
+
+- name: Accept Java 8 license
+  become: true
+  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+
+- name: Install Oracle Java 8
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+    - oracle-java8-installer
+    - ca-certificates
+    - oracle-java8-set-default
+
+#Install android SDK
+- name: download file
+  get_url:
+    url: https://dl.google.com/dl/android/studio/ide-zips/3.2.1.0/android-studio-ide-181.5056338-linux.zip
+    dest: /tmp/sdk.zip
+
+- name: create target dir
+  become: true
+  file:
+    path: /opt/adt/
+    state: directory
+    mode: 0777
+
+- name: unzip file
+  become: true
+  unarchive:
+    src: /tmp/sdk.zip
+    dest: /opt/adt
+    remote_src: yes
+    creates: /opt/adt/android-studio/bin/studio.sh
+
+

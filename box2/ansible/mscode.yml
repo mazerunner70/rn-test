@@ -1,0 +1,7 @@
+---
+# file: mscode.yml
+- hosts: dev_env
+  roles:
+    - common
+    - mscode
+

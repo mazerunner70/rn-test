@@ -1,0 +1,7 @@
+---
+# file: dev_env.yml
+- hosts: dev_env
+  roles:
+    - common
+    - dev_env
+

@@ -18,11 +18,5 @@ else:
   print "I win!"
 
 
-test1-auth.eu.auth0.com
-_MHhkxuysNcAl5B3qIH2gMQq2L1IvIj2
-
-wpohara@hotmail.co.uk
 elephant1!A
-
-dl.google.com/dl/android/studio/ide-zips/3.2.1.0/android-studio-ide-181.5056338-linux.zip
 

@@ -4,11 +4,17 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "android-linux": "~/.yarn/bin/react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && ~/.yarn/bin/react-native run-android"
   },
   "dependencies": {
+    "babel-core": "^6.26.3",
     "react": "16.6.0-alpha.8af6728",
-    "react-native": "0.57.4"
+    "react-native": "0.57.4",
+    "react-redux": "^5.1.0",
+    "react-router-native": "^4.3.0",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

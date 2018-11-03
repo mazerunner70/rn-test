@@ -1,0 +1,7 @@
+---
+# file: nodejs.yml
+- hosts: dev_env
+  roles:
+    - common
+    - nodejs
+

@@ -41,4 +41,5 @@ coverage/
 database/*
 !database/.gitkeep
 
+index.android.bundle
  

@@ -11,10 +11,14 @@
     "babel-core": "^6.26.3",
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
+    "react-native-button": "^2.3.0",
+    "react-native-responsive-styles": "^0.2.2",
+    "react-native-responsive-ui": "^1.1.1",
     "react-redux": "^5.1.0",
     "react-router-native": "^4.3.0",
     "redux": "^4.0.1",
-    "redux-saga": "^0.16.2"
+    "redux-saga": "^0.16.2",
+    "styled-components": "^4.0.3"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

@@ -62,6 +62,11 @@
     global: yes
     state: latest
 
+- name: Add yarn/bin to path
+  lineinfile: dest=/home/vagrant/.bashrc line="{{ item }}"
+  with_items:
+  - 'export PATH=$PATH:~/.yarn/bin'
+
 # Add Java
 
 - name: Add repo

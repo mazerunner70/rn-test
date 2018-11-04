@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import RouterScreen from './src/screens/router';
 import { Provider } from 'react-redux';
 import { store } from './src/state/store';
@@ -19,8 +19,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     console.log('started');
     return (

@@ -22,6 +22,12 @@ Vagrant.configure("2") do |config|
     v.name = "rn-test"
   end
 
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--usb", "on"]
+    v.customize ["modifyvm", :id, "--usbxhci", "on"]
+    v.customize ["modifyvm", :id, "--accelerate3d", "on"]
+  end
+
   # From https://www.vagrantup.com/docs/networking/forwarded_ports.html
   config.vm.network "forwarded_port", guest: 80, host: 8080
   

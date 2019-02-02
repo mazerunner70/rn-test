@@ -41,5 +41,10 @@ coverage/
 database/*
 !database/.gitkeep
 
+# .env files #
+##############
+.env
+
+
 index.android.bundle
  

@@ -8,12 +8,17 @@
     "android-linux": "~/.yarn/bin/react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && ~/.yarn/bin/react-native run-android"
   },
   "dependencies": {
+    "aws-sdk": "^2.373.0",
     "babel-core": "^6.26.3",
+    "d3-shape": "^1.2.2",
+    "moment": "^2.23.0",
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
     "react-native-button": "^2.3.0",
-    "react-native-responsive-styles": "^0.2.2",
+    "react-native-dotenv": "^0.2.0",
     "react-native-responsive-ui": "^1.1.1",
+    "react-native-svg": "^8.0.10",
+    "react-native-svg-charts": "^5.2.0",
     "react-redux": "^5.1.0",
     "react-router-native": "^4.3.0",
     "redux": "^4.0.1",

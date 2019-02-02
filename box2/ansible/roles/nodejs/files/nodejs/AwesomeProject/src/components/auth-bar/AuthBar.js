@@ -1,18 +1,18 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Button from 'react-native-button';
-import { FloatRightView, ColouredButton } from './styled.js';
+import { WhiteText, FloatRightView, ColouredButton, LoggedInView } from './styled.js';
 
 function AuthBar(props) {
   return (
     <FloatRightView>
       {
         props.isAuthenticated ?
-          <View>
-            <Text >Logged in as: {props.name}</Text>
-            <Button onPress={props.handleLogout} title='Logout'/>
-          </View> :
-          <ColouredButton onPress={props.handleLogin} title='Logino'>Login</ColouredButton>
+          <LoggedInView>
+            <WhiteText >Logged in as: {props.username}</WhiteText>
+            <ColouredButton onPress={props.handleLogout} title='Login'>Logout</ColouredButton>
+          </LoggedInView> :
+          <ColouredButton onPress={props.handleLogin} title='Login'>Login</ColouredButton>
       }
     </FloatRightView>      
   );

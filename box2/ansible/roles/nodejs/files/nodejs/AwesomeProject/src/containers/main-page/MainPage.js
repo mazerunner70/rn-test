@@ -26,6 +26,28 @@ const sidebarToggle =
   }
 
 
+import AuthBar from '../../components/auth-bar';
+import Banner from '../../components/banner';
+import Navbar from '../../components/navbar';
+
+const navbarOptions = [
+  {
+    name: 'About',
+    handlePress: () => { console.log('hgk')}
+  },
+  {
+    name: 'Misc',
+    handlePress: () => { console.log('hgk')}
+  },
+]
+const sidebarToggle = 
+  {
+    name: 'Sidebar',
+    handlePress: () => { console.log('hgk')},
+    sidebarButton: true
+  }
+
+
 function Layout(props) {
   console.log('232', props.isAuthenticated)
   return (
@@ -34,6 +56,7 @@ function Layout(props) {
         handleLogin={props.doLogin} 
         isAuthenticated={props.isAuthenticated}
         username={props.loggedInName}/>
+
       <Navbar options= {navbarOptions} toggle={sidebarToggle}/>
       <View style={{ flex: 1, flexDirection: 'row'}}>
         <View style={{width:500, backgroundColor: 'skyblue'}}>

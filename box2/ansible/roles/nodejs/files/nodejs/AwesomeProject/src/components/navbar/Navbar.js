@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View } from 'react-native';
 import { WhiteText, NavbarLink, NavbarView, NavbarButton, SidebarToggle } from './styled';
+
 import {ResponsiveComponent } from 'react-native-responsive-ui';
 
 const symbol = '\u{2630}';
@@ -18,6 +19,7 @@ class Navbar extends ResponsiveComponent {
           to={button.linkTo}>
             <WhiteText>{button.name}</WhiteText>
         </NavbarLink>
+
       )
     });
     const sidebarToggle =

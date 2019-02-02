@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import Button from 'react-native-button';
 import { View, Text } from 'react-native';
 
+
 const FloatRightView = styled.View `
   backgroundColor: black;
   height: 50;
@@ -17,11 +18,13 @@ const LoggedInView = styled.View `
   justifyContent: flex-end;
 `;
 
+
 const ColouredButton = styled(Button) `
   color: white;
   backgroundColor: black;
   padding: 10px 10px 5px 5px;
 `;
+
 
 const WhiteText = styled(Text) `
   color: white;
@@ -30,5 +33,6 @@ const WhiteText = styled(Text) `
 `;
 
 export { WhiteText, LoggedInView, FloatRightView, ColouredButton };
+
 
 //flex: 1, , justifyContent: 'flex-end'

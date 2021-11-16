@@ -8,7 +8,7 @@
     "android-linux": "~/.yarn/bin/react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && ~/.yarn/bin/react-native run-android"
   },
   "dependencies": {
-    "aws-sdk": "^2.373.0",
+    "aws-sdk": "^2.814.0",
     "babel-core": "^6.26.3",
     "d3-shape": "^1.2.2",
     "moment": "^2.23.0",

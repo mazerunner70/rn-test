@@ -4410,10 +4410,10 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-moment@^2.23.0:
-  version "2.23.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.23.0.tgz#759ea491ac97d54bac5ad776996e2a58cc1bc225"
-  integrity sha512-3IE39bHVqFbWWaPOMHZF98Q9c3LDKGTmypMiTM2QygGXXElkFWIH7GxfmlwmY2vwa+wmNsoYZmG2iusf1ZjJoA==
+moment@^2.29.2:
+  version "2.29.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4"
+  integrity sha512-UgzG4rvxYpN15jgCmVJwac49h9ly9NurikMWGPdVxm8GZD6XjkKPxDTjQQ43gtGgnV3X0cAyWDdP2Wexoquifg==
 
 morgan@^1.9.0:
   version "1.9.1"
@@ -5012,7 +5012,6 @@ prompts@^0.1.9:
     sisteransi "^0.1.1"
 
 prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
-
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
@@ -5122,14 +5121,12 @@ react-native-button@^2.3.0:
   dependencies:
     prop-types "^15.5.10"
 
-
 react-native-dotenv@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-0.2.0.tgz#311551cb6a35a3dcfede648bded55c0e3ece579d"
   integrity sha1-MRVRy2o1o9z+3mSL3tVcDj7OV50=
   dependencies:
     babel-plugin-dotenv "0.1.1"
-
 
 react-native-responsive-ui@^1.1.1:
   version "1.1.1"
@@ -5157,7 +5154,6 @@ react-native-svg@^8.0.10:
     color "^2.0.1"
     lodash "^4.16.6"
     pegjs "^0.10.0"
-
 
 react-native@0.57.4:
   version "0.57.4"

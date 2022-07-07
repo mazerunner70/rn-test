@@ -11,7 +11,7 @@
     "aws-sdk": "^2.373.0",
     "babel-core": "^6.26.3",
     "d3-shape": "^1.2.2",
-    "moment": "^2.23.0",
+    "moment": "^2.29.4",
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
     "react-native-button": "^2.3.0",
